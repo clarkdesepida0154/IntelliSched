@@ -1,0 +1,171 @@
+{
+  "name": "week-groups-room-same-group-clash",
+  "description": "Two classes of the SAME week group in one room at one time: a room clash.",
+  "policy": {
+    "slotMinutes": 30,
+    "origin": "08:00",
+    "weekGroupsEnabled": true,
+    "dayWindows": {
+      "Monday": {
+        "startSlot": 0,
+        "endSlot": 18
+      },
+      "Tuesday": {
+        "startSlot": 0,
+        "endSlot": 18
+      },
+      "Wednesday": {
+        "startSlot": 0,
+        "endSlot": 18
+      },
+      "Thursday": {
+        "startSlot": 0,
+        "endSlot": 18
+      },
+      "Friday": {
+        "startSlot": 0,
+        "endSlot": 18
+      },
+      "Saturday": {
+        "startSlot": 0,
+        "endSlot": 18
+      }
+    },
+    "lunch": {
+      "enabled": true,
+      "startSlot": 4,
+      "endSlot": 14,
+      "minFreeSlots": 2
+    },
+    "sameSubjectDifferentDays": true,
+    "majorLectureInLab": "PENALTY",
+    "enforceCapacity": false,
+    "softWeights": {
+      "saturdayBlock": 50,
+      "lectureInLab": 10,
+      "sectionGapHour": 5,
+      "facultyGapHour": 2,
+      "overflowRoomBlock": 30,
+      "tbaRoomUsed": 50,
+      "earlyStart": 5
+    },
+    "preferredEarliestStartSlot": 0,
+    "seed": 1
+  },
+  "rooms": [
+    {
+      "roomId": "room-lec-1",
+      "roomName": "TEST LEC 1",
+      "roomType": "LEC",
+      "capacity": 40,
+      "availability": []
+    },
+    {
+      "roomId": "room-lec-2",
+      "roomName": "TEST LEC 2",
+      "roomType": "LEC",
+      "capacity": 40,
+      "availability": []
+    },
+    {
+      "roomId": "room-lab-1",
+      "roomName": "TEST LAB 1",
+      "roomType": "LAB",
+      "capacity": null,
+      "availability": []
+    },
+    {
+      "roomId": "room-lab-2",
+      "roomName": "TEST LAB 2",
+      "roomType": "LAB",
+      "capacity": null,
+      "availability": []
+    }
+  ],
+  "faculty": [],
+  "demands": [
+    {
+      "demandId": "sec-odd-1:subj-1:LEC:0",
+      "subjectId": "subj-1",
+      "subjectCode": "TEST SUBJ-1",
+      "sectionId": "sec-odd-1",
+      "sectionCode": "TEST SEC-ODD-1",
+      "sectionSize": null,
+      "classType": "LEC",
+      "meetingGroup": "sec-odd-1:subj-1",
+      "durationSlots": 4,
+      "facultyRef": null,
+      "isMinor": false,
+      "requiresRoom": true,
+      "allowedRoomTypes": [
+        "LEC",
+        "LAB"
+      ],
+      "allowedDays": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "allowedStarts": null,
+      "fixed": null,
+      "weekGroup": "ODD"
+    },
+    {
+      "demandId": "sec-odd-2:subj-1:LEC:0",
+      "subjectId": "subj-1",
+      "subjectCode": "TEST SUBJ-1",
+      "sectionId": "sec-odd-2",
+      "sectionCode": "TEST SEC-ODD-2",
+      "sectionSize": null,
+      "classType": "LEC",
+      "meetingGroup": "sec-odd-2:subj-1",
+      "durationSlots": 4,
+      "facultyRef": null,
+      "isMinor": false,
+      "requiresRoom": true,
+      "allowedRoomTypes": [
+        "LEC",
+        "LAB"
+      ],
+      "allowedDays": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "allowedStarts": null,
+      "fixed": null,
+      "weekGroup": "ODD"
+    }
+  ],
+  "placements": [
+    {
+      "demandId": "sec-odd-1:subj-1:LEC:0",
+      "day": "Monday",
+      "startSlot": 0,
+      "roomId": "room-lec-1"
+    },
+    {
+      "demandId": "sec-odd-2:subj-1:LEC:0",
+      "day": "Monday",
+      "startSlot": 0,
+      "roomId": "room-lec-1"
+    }
+  ],
+  "expected": {
+    "HC3_ROOM_CLASH": 1
+  },
+  "expectedSoft": {
+    "SAT_BLOCK": 0,
+    "LEC_IN_LAB": 0,
+    "EXTRA_ROOM": 0,
+    "SECTION_IDLE": 0,
+    "FACULTY_IDLE": 0,
+    "TBA_ROOM": 0,
+    "EARLY_START": 0,
+    "total": 0
+  }
+}

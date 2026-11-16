@@ -1,0 +1,129 @@
+{
+  "name": "day-nstp-saturday-block",
+  "description": "NSTP on Saturday 08:00-12:00.",
+  "policy": {
+    "slotMinutes": 30,
+    "origin": "07:00",
+    "dayWindows": {
+      "Monday": {
+        "startSlot": 0,
+        "endSlot": 20
+      },
+      "Tuesday": {
+        "startSlot": 0,
+        "endSlot": 20
+      },
+      "Wednesday": {
+        "startSlot": 0,
+        "endSlot": 20
+      },
+      "Thursday": {
+        "startSlot": 0,
+        "endSlot": 20
+      },
+      "Friday": {
+        "startSlot": 0,
+        "endSlot": 20
+      },
+      "Saturday": {
+        "startSlot": 0,
+        "endSlot": 20
+      }
+    },
+    "lunch": {
+      "enabled": true,
+      "startSlot": 6,
+      "endSlot": 16,
+      "minFreeSlots": 2
+    },
+    "sameSubjectDifferentDays": true,
+    "majorLectureInLab": "PENALTY",
+    "enforceCapacity": false,
+    "softWeights": {
+      "saturdayBlock": 50,
+      "lectureInLab": 10,
+      "sectionGapHour": 5,
+      "facultyGapHour": 2,
+      "overflowRoomBlock": 30,
+      "tbaRoomUsed": 50,
+      "earlyStart": 5
+    },
+    "preferredEarliestStartSlot": 2,
+    "seed": 1
+  },
+  "rooms": [
+    {
+      "roomId": "room-lec-1",
+      "roomName": "TEST LEC 1",
+      "roomType": "LEC",
+      "capacity": 40,
+      "availability": []
+    },
+    {
+      "roomId": "room-lec-2",
+      "roomName": "TEST LEC 2",
+      "roomType": "LEC",
+      "capacity": 40,
+      "availability": []
+    },
+    {
+      "roomId": "room-lab-1",
+      "roomName": "TEST LAB 1",
+      "roomType": "LAB",
+      "capacity": null,
+      "availability": []
+    },
+    {
+      "roomId": "room-lab-2",
+      "roomName": "TEST LAB 2",
+      "roomType": "LAB",
+      "capacity": null,
+      "availability": []
+    }
+  ],
+  "faculty": [],
+  "demands": [
+    {
+      "demandId": "sec-a:nstp:LEC:0",
+      "subjectId": "nstp",
+      "subjectCode": "TEST NSTP",
+      "sectionId": "sec-a",
+      "sectionCode": "TEST SEC-A",
+      "sectionSize": null,
+      "classType": "LEC",
+      "meetingGroup": "sec-a:nstp",
+      "durationSlots": 8,
+      "facultyRef": null,
+      "isMinor": true,
+      "requiresRoom": false,
+      "allowedRoomTypes": [],
+      "allowedDays": [
+        "Saturday"
+      ],
+      "allowedStarts": null,
+      "fixed": {
+        "day": "Saturday",
+        "startSlot": 2
+      }
+    }
+  ],
+  "placements": [
+    {
+      "demandId": "sec-a:nstp:LEC:0",
+      "day": "Saturday",
+      "startSlot": 2,
+      "roomId": null
+    }
+  ],
+  "expected": {},
+  "expectedSoft": {
+    "SAT_BLOCK": 0,
+    "LEC_IN_LAB": 0,
+    "EXTRA_ROOM": 0,
+    "SECTION_IDLE": 0,
+    "FACULTY_IDLE": 0,
+    "TBA_ROOM": 0,
+    "EARLY_START": 0,
+    "total": 0
+  }
+}

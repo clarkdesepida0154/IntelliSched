@@ -1,0 +1,29 @@
+# IntelliSched deployment kit: the Python service's runtime packages, pinned to the versions of
+# ../intellisched_backend/.venv (the tested set). Left out (evaluation or tests only): matplotlib, shap,
+# pytest, httpx, python-docx, openpyxl (not imported by the service). numpy 2.5.3 as in the venv.
+fastapi==0.115.0
+starlette==0.38.6
+uvicorn==0.30.6
+h11==0.16.0
+click==8.5.0
+colorama==0.4.6
+anyio==4.15.1
+idna==3.19
+pydantic==2.8.2
+pydantic_core==2.20.1
+annotated-types==0.8.0
+typing_extensions==4.16.0
+pymongo==4.8.0
+dnspython==2.8.0
+python-dotenv==1.0.1
+scikit-learn==1.9.0
+scipy==1.17.1
+threadpoolctl==3.6.0
+joblib==1.4.2
+narwhals==2.26.0
+pandas==2.2.2
+numpy==2.5.3
+python-dateutil==2.9.0.post0
+six==1.17.0
+pytz==2026.3.post1
+tzdata==2026.3

@@ -1,0 +1,104 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>IntelliSched Paired T-Test Results</title>
+<style>@page { size: A4; margin: 1in 1in 1in 1.5in; }
+body { font-family: Arial, Arimo, sans-serif; font-size: 12pt; line-height: 1.5; color: #000; background: #fff; margin: 0; }
+h1 { font-size: 14pt; text-align: center; margin: 0 0 0 0; } .sub { text-align: center; margin: 0 0 12pt; }
+h2 { font-size: 12pt; margin: 18pt 0 6pt; break-after: avoid; } p { text-align: justify; margin: 0 0 12pt; }
+.cap { font-weight: bold; margin: 12pt 0 4pt; break-after: avoid; text-align: left; }
+.figcap { margin: 4pt 0 12pt; text-align: left; }
+table { border-collapse: collapse; width: 100%; font-size: 10pt; line-height: 1.2; margin: 0 0 4pt; break-inside: avoid; }
+td:first-child { width: 38%; } td:not(:first-child) { white-space: nowrap; }
+th, td { border-top: 0.75pt solid #000; border-bottom: 0.75pt solid #000; padding: 3pt 4pt; text-align: center; vertical-align: top; }
+th { font-weight: bold; } td:first-child, th:first-child { text-align: left; }
+.note { font-size: 10pt; line-height: 1.2; margin: 0 0 12pt; } figure { margin: 6pt 0 0; break-inside: avoid; } img { width: 100%; }</style></head><body>
+<h1>IntelliSched: Results of the Paired Samples T-Tests</h1>
+<p class="sub">Manual scheduling vs IntelliSched, 2nd Semester AY 2025-2026</p>
+<p>The same Phase 10 data were analysed again without collecting anything new. Each comparison is a paired-samples t-test (two-tailed, α = .05) on the same units: each teacher, section and room for the schedule (IntelliSched's value per unit is the mean of its 10 runs, with the Dean's teacher assignments kept), each class and each teacher for the faculty assignment, and each class for the ranking of the Dean's actual choice. Because several measures are tested together, significance is decided by the Holm-adjusted p within each family of tests. The effect size is Cohen's d for paired samples (the mean difference divided by the standard deviation of the differences). Each group's median and standard error (SE = SD ÷ √N) are reported with its mean and standard deviation. Measure 1 − Measure 2 is Manual − IntelliSched, or Model − simpler method for the ranking; the alternative hypothesis is Hₐ: μ(Measure 1 − Measure 2) ≠ 0. Where both groups have the same value on every unit, no test can be computed and the table shows a dash.</p>
+<h2>A. Schedule Generation</h2>
+<p class="cap">Table 1. Descriptive Comparison of Schedule Generation</p>
+<table><thead><tr><th>Measure</th><th>Group</th><th>N</th><th>Mean</th><th>Median</th><th>SD</th><th>SE</th></tr></thead><tbody>
+<tr><td>Faculty: hard problems per teacher</td><td>Manual</td><td>16</td><td>0.000</td><td>0.000</td><td>0.000</td><td>0.000</td></tr>
+<tr><td>Faculty: hard problems per teacher</td><td>IntelliSched</td><td>16</td><td>0.000</td><td>0.000</td><td>0.000</td><td>0.000</td></tr>
+<tr><td>Faculty: rule breaks</td><td>Manual</td><td>16</td><td>0.812</td><td>0.000</td><td>1.328</td><td>0.332</td></tr>
+<tr><td>Faculty: rule breaks</td><td>IntelliSched</td><td>16</td><td>0.081</td><td>0.000</td><td>0.223</td><td>0.056</td></tr>
+<tr><td>Faculty: idle gap hours</td><td>Manual</td><td>16</td><td>2.688</td><td>1.500</td><td>3.092</td><td>0.773</td></tr>
+<tr><td>Faculty: idle gap hours</td><td>IntelliSched</td><td>16</td><td>0.666</td><td>0.650</td><td>0.476</td><td>0.119</td></tr>
+<tr><td>Faculty: single-class days</td><td>Manual</td><td>16</td><td>0.938</td><td>1.000</td><td>0.772</td><td>0.193</td></tr>
+<tr><td>Faculty: single-class days</td><td>IntelliSched</td><td>16</td><td>0.669</td><td>0.700</td><td>0.605</td><td>0.151</td></tr>
+<tr><td>Faculty: days used</td><td>Manual</td><td>16</td><td>4.188</td><td>4.000</td><td>0.750</td><td>0.188</td></tr>
+<tr><td>Faculty: days used</td><td>IntelliSched</td><td>16</td><td>3.806</td><td>3.950</td><td>0.807</td><td>0.202</td></tr>
+<tr><td>Section: hard problems per section</td><td>Manual</td><td>19</td><td>0.000</td><td>0.000</td><td>0.000</td><td>0.000</td></tr>
+<tr><td>Section: hard problems per section</td><td>IntelliSched</td><td>19</td><td>0.000</td><td>0.000</td><td>0.000</td><td>0.000</td></tr>
+<tr><td>Section: rule breaks</td><td>Manual</td><td>19</td><td>0.421</td><td>0.000</td><td>0.769</td><td>0.176</td></tr>
+<tr><td>Section: rule breaks</td><td>IntelliSched</td><td>19</td><td>0.000</td><td>0.000</td><td>0.000</td><td>0.000</td></tr>
+<tr><td>Section: idle gap hours</td><td>Manual</td><td>19</td><td>2.105</td><td>2.000</td><td>1.729</td><td>0.397</td></tr>
+<tr><td>Section: idle gap hours</td><td>IntelliSched</td><td>19</td><td>0.366</td><td>0.250</td><td>0.367</td><td>0.084</td></tr>
+<tr><td>Section: single-class days</td><td>Manual</td><td>19</td><td>0.263</td><td>0.000</td><td>0.452</td><td>0.104</td></tr>
+<tr><td>Section: single-class days</td><td>IntelliSched</td><td>19</td><td>0.347</td><td>0.200</td><td>0.376</td><td>0.086</td></tr>
+<tr><td>Section: days used</td><td>Manual</td><td>19</td><td>3.684</td><td>4.000</td><td>1.493</td><td>0.342</td></tr>
+<tr><td>Section: days used</td><td>IntelliSched</td><td>19</td><td>4.053</td><td>4.500</td><td>1.580</td><td>0.363</td></tr>
+<tr><td>Room: hard problems per room</td><td>Manual</td><td>7</td><td>0.000</td><td>0.000</td><td>0.000</td><td>0.000</td></tr>
+<tr><td>Room: hard problems per room</td><td>IntelliSched</td><td>7</td><td>0.000</td><td>0.000</td><td>0.000</td><td>0.000</td></tr>
+<tr><td>Room: rule breaks</td><td>Manual</td><td>7</td><td>1.000</td><td>1.000</td><td>1.000</td><td>0.378</td></tr>
+<tr><td>Room: rule breaks</td><td>IntelliSched</td><td>7</td><td>0.000</td><td>0.000</td><td>0.000</td><td>0.000</td></tr>
+</tbody></table>
+<p class="cap">Table 2. Results of the Paired Samples T-Test on Schedule Generation</p>
+<table><thead><tr><th>Measure</th><th>T-Test</th><th>Statistic</th><th>df</th><th>p</th><th>Holm p</th><th>Mean Difference</th><th>Effect Size (Cohen's d)</th></tr></thead><tbody>
+<tr><td>Faculty: hard problems per teacher</td><td>Student's t</td><td>—</td><td>—</td><td>—</td><td>—</td><td>0.000</td><td>—</td></tr>
+<tr><td>Faculty: rule breaks</td><td>Student's t</td><td>2.399</td><td>15</td><td>0.030</td><td>0.169</td><td>0.731</td><td>0.600</td></tr>
+<tr><td>Faculty: idle gap hours</td><td>Student's t</td><td>2.713</td><td>15</td><td>0.016</td><td>0.112</td><td>2.022</td><td>0.678</td></tr>
+<tr><td>Faculty: single-class days</td><td>Student's t</td><td>1.563</td><td>15</td><td>0.139</td><td>0.278</td><td>0.269</td><td>0.391</td></tr>
+<tr><td>Faculty: days used</td><td>Student's t</td><td>2.165</td><td>15</td><td>0.047</td><td>0.169</td><td>0.381</td><td>0.541</td></tr>
+<tr><td>Section: hard problems per section</td><td>Student's t</td><td>—</td><td>—</td><td>—</td><td>—</td><td>0.000</td><td>—</td></tr>
+<tr><td>Section: rule breaks</td><td>Student's t</td><td>2.388</td><td>18</td><td>0.028</td><td>0.169</td><td>0.421</td><td>0.548</td></tr>
+<tr><td>Section: idle gap hours</td><td>Student's t</td><td>4.161</td><td>18</td><td>&lt; .001</td><td>0.005</td><td>1.739</td><td>0.955</td></tr>
+<tr><td>Section: single-class days</td><td>Student's t</td><td>-0.884</td><td>18</td><td>0.388</td><td>0.388</td><td>-0.084</td><td>-0.203</td></tr>
+<tr><td>Section: days used</td><td>Student's t</td><td>-5.351</td><td>18</td><td>&lt; .001</td><td>&lt; .001</td><td>-0.368</td><td>-1.228</td></tr>
+<tr><td>Room: hard problems per room</td><td>Student's t</td><td>—</td><td>—</td><td>—</td><td>—</td><td>0.000</td><td>—</td></tr>
+<tr><td>Room: rule breaks</td><td>Student's t</td><td>2.646</td><td>6</td><td>0.038</td><td>0.169</td><td>1.000</td><td>1.000</td></tr>
+</tbody></table>
+<p class="note">Note. Hₐ: μ(Measure 1 − Measure 2) ≠ 0; Measure 1 − Measure 2 = Manual − IntelliSched. A dash (—): identical on every unit; the test cannot be computed (no variation in the differences).</p>
+<figure><img src="../fig_ttest_schedule_mean_median.png" alt="Figure 1. Mean and Median of Schedule Generation. Circles are means with their 95% confidence intervals; squares are medians."><p class="figcap">Figure 1. Mean and Median of Schedule Generation. Circles are means with their 95% confidence intervals; squares are medians.</p></figure>
+<p>For schedule generation (per teacher, section and room), 12 paired comparisons were made between the Manual schedule and IntelliSched's schedule (the mean of its 10 runs per unit). 3 are identical on every unit (hard problems per teacher, hard problems per section, hard problems per room), so no test can be computed and there is no difference. After the Holm correction, 2 of the 9 computed differences are statistically significant: IntelliSched is better in idle gap hours per section (t(18) = 4.161, Holm p = .005, d = 0.955); days used per section differs, with IntelliSched using more days, which is not counted as better or worse (t(18) = -5.351, Holm p &lt; .001, d = -1.228). There is no statistically significant difference in rule breaks per teacher, idle gap hours per teacher, single-class days per teacher, days used per teacher, rule breaks per section, single-class days per section, rule breaks per room.</p>
+<h2>B. Faculty Assignment</h2>
+<p class="cap">Table 3. Descriptive Comparison of Faculty Assignment</p>
+<table><thead><tr><th>Measure</th><th>Group</th><th>N</th><th>Mean</th><th>Median</th><th>SD</th><th>SE</th></tr></thead><tbody>
+<tr><td>Credentials match of the assigned teacher (per class)</td><td>Manual</td><td>64</td><td>0.051</td><td>0.025</td><td>0.071</td><td>0.009</td></tr>
+<tr><td>Credentials match of the assigned teacher (per class)</td><td>IntelliSched</td><td>64</td><td>0.057</td><td>0.019</td><td>0.084</td><td>0.010</td></tr>
+<tr><td>Semesters the assigned teacher taught the subject before (per class)</td><td>Manual</td><td>64</td><td>0.781</td><td>1.000</td><td>0.417</td><td>0.052</td></tr>
+<tr><td>Semesters the assigned teacher taught the subject before (per class)</td><td>IntelliSched</td><td>64</td><td>0.875</td><td>1.000</td><td>0.333</td><td>0.042</td></tr>
+<tr><td>Hours over the teaching cap (per teacher)</td><td>Manual</td><td>17</td><td>0.000</td><td>0.000</td><td>0.000</td><td>0.000</td></tr>
+<tr><td>Hours over the teaching cap (per teacher)</td><td>IntelliSched</td><td>17</td><td>0.000</td><td>0.000</td><td>0.000</td><td>0.000</td></tr>
+<tr><td>Different subjects to prepare (per teacher)</td><td>Manual</td><td>17</td><td>2.529</td><td>3.000</td><td>1.068</td><td>0.259</td></tr>
+<tr><td>Different subjects to prepare (per teacher)</td><td>IntelliSched</td><td>17</td><td>2.471</td><td>2.000</td><td>1.419</td><td>0.344</td></tr>
+<tr><td>Distance from the group's average load (per teacher; balance)</td><td>Manual</td><td>17</td><td>4.836</td><td>3.500</td><td>3.834</td><td>0.930</td></tr>
+<tr><td>Distance from the group's average load (per teacher; balance)</td><td>IntelliSched</td><td>17</td><td>6.926</td><td>5.400</td><td>6.225</td><td>1.510</td></tr>
+</tbody></table>
+<p class="cap">Table 4. Results of the Paired Samples T-Test on Faculty Assignment</p>
+<table><thead><tr><th>Measure</th><th>T-Test</th><th>Statistic</th><th>df</th><th>p</th><th>Holm p</th><th>Mean Difference</th><th>Effect Size (Cohen's d)</th></tr></thead><tbody>
+<tr><td>Credentials match of the assigned teacher (per class)</td><td>Student's t</td><td>-0.829</td><td>63</td><td>0.410</td><td>0.410</td><td>-0.007</td><td>-0.104</td></tr>
+<tr><td>Semesters the assigned teacher taught the subject before (per class)</td><td>Student's t</td><td>-2.553</td><td>63</td><td>0.013</td><td>0.026</td><td>-0.094</td><td>-0.319</td></tr>
+<tr><td>Hours over the teaching cap (per teacher)</td><td>Student's t</td><td>—</td><td>—</td><td>—</td><td>—</td><td>0.000</td><td>—</td></tr>
+<tr><td>Different subjects to prepare (per teacher)</td><td>Student's t</td><td>0.187</td><td>16</td><td>0.854</td><td>0.854</td><td>0.059</td><td>0.045</td></tr>
+<tr><td>Distance from the group's average load (per teacher; balance)</td><td>Student's t</td><td>-1.123</td><td>16</td><td>0.278</td><td>0.556</td><td>-2.090</td><td>-0.272</td></tr>
+</tbody></table>
+<p class="note">Note. Hₐ: μ(Measure 1 − Measure 2) ≠ 0; Measure 1 − Measure 2 = Manual − IntelliSched. A dash (—): identical on every unit; the test cannot be computed (no variation in the differences).</p>
+<figure><img src="../fig_ttest_assignment_mean_median.png" alt="Figure 2. Mean and Median of Faculty Assignment. Circles are means with their 95% confidence intervals; squares are medians."><p class="figcap">Figure 2. Mean and Median of Faculty Assignment. Circles are means with their 95% confidence intervals; squares are medians.</p></figure>
+<p>For faculty assignment, 5 paired comparisons were made between the Manual assignment and IntelliSched's assignment. 1 is identical on every unit (the hours over the teaching cap per teacher), so no test can be computed and there is no difference. After the Holm correction, 1 of the 4 computed differences is statistically significant: IntelliSched is better in the assigned teacher's earlier experience with the subject per class (t(63) = -2.553, Holm p = .026, d = -0.319). There is no statistically significant difference in the credentials match of the assigned teacher per class, the number of different subjects each teacher prepares, each teacher's distance from the group's average load (load balance).</p>
+<h2>C. Faculty Recommendation Ranking</h2>
+<p class="cap">Table 5. Descriptive Comparison of Faculty Recommendation Ranking</p>
+<table><thead><tr><th>Measure</th><th>Group</th><th>N</th><th>Mean</th><th>Median</th><th>SD</th><th>SE</th></tr></thead><tbody>
+<tr><td>Reciprocal rank of the Dean's choice</td><td>Model</td><td>70</td><td>0.744</td><td>1.000</td><td>0.363</td><td>0.043</td></tr>
+<tr><td>Reciprocal rank of the Dean's choice</td><td>Credentials only</td><td>70</td><td>0.288</td><td>0.143</td><td>0.302</td><td>0.036</td></tr>
+<tr><td>Reciprocal rank of the Dean's choice</td><td>Last same-semester teacher rule</td><td>70</td><td>0.711</td><td>1.000</td><td>0.401</td><td>0.048</td></tr>
+<tr><td>Reciprocal rank of the Dean's choice</td><td>Random choice</td><td>70</td><td>0.202</td><td>0.202</td><td>0.000</td><td>0.000</td></tr>
+</tbody></table>
+<p class="cap">Table 6. Results of the Paired Samples T-Test on Faculty Recommendation Ranking</p>
+<table><thead><tr><th>Measure</th><th>T-Test</th><th>Statistic</th><th>df</th><th>p</th><th>Holm p</th><th>Mean Difference</th><th>Effect Size (Cohen's d)</th></tr></thead><tbody>
+<tr><td>Model − Credentials only</td><td>Student's t</td><td>9.119</td><td>69</td><td>&lt; .001</td><td>&lt; .001</td><td>0.456</td><td>1.090</td></tr>
+<tr><td>Model − Last same-semester teacher rule</td><td>Student's t</td><td>1.518</td><td>69</td><td>0.134</td><td>0.134</td><td>0.033</td><td>0.181</td></tr>
+<tr><td>Model − Random choice</td><td>Student's t</td><td>12.499</td><td>69</td><td>&lt; .001</td><td>&lt; .001</td><td>0.542</td><td>1.494</td></tr>
+</tbody></table>
+<p class="note">Note. Hₐ: μ(Measure 1 − Measure 2) ≠ 0; Measure 1 − Measure 2 = Model − the simpler method (reciprocal rank of the Dean's actual choice). A dash (—): identical on every unit; the test cannot be computed (no variation in the differences).</p>
+<figure><img src="../fig_ttest_ranking_mean_median.png" alt="Figure 3. Mean and Median of Faculty Recommendation Ranking. Circles are means with their 95% confidence intervals; squares are medians."><p class="figcap">Figure 3. Mean and Median of Faculty Recommendation Ranking. Circles are means with their 95% confidence intervals; squares are medians.</p></figure>
+<p>For the faculty recommendation ranking, 3 paired comparisons were made between the model's ranking and each simpler method's ranking of the Dean's actual choice. After the Holm correction, 2 of the 3 computed differences are statistically significant: the model ranks the Dean's actual choice higher than the credentials-only ranking (t(69) = 9.119, Holm p &lt; .001, d = 1.090); the model ranks the Dean's actual choice higher than a random choice (t(69) = 12.499, Holm p &lt; .001, d = 1.494). There is no statistically significant difference between the model and the last same-semester teacher rule.</p>
+</body></html>

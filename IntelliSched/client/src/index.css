@@ -1,0 +1,159 @@
+@import "tailwindcss";
+@custom-variant dark (&:is(.dark *));
+
+/* ==========================================================================
+   ENTERPRISE SCROLLBARS
+   --------------------------------------------------------------------------
+   Chromium browsers (Brave, Chrome, Edge) ignore every ::-webkit-scrollbar rule
+   on an element that also carries the standard `scrollbar-width` /
+   `scrollbar-color` properties, and fall back to the native rail. The previous
+   global `* { scrollbar-width: thin }` therefore switched OFF all of the custom
+   styling below in exactly the browser the team uses.
+
+   The standard properties are now applied only where the WebKit pseudo-elements
+   do not exist (Firefox); Chromium gets the styled rail.
+   ========================================================================== */
+
+/* Firefox: standard properties only. */
+@supports not selector(::-webkit-scrollbar) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 transparent;
+  }
+
+  .dark * {
+    scrollbar-color: #3f3f46 transparent;
+  }
+}
+
+/* Chromium / WebKit: global default rail. 8px track, thumb inset to read as 4px. */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #94a3b8;
+}
+
+.dark::-webkit-scrollbar-thumb,
+.dark ::-webkit-scrollbar-thumb {
+  background-color: #3f3f46;
+}
+
+.dark::-webkit-scrollbar-thumb:hover,
+.dark ::-webkit-scrollbar-thumb:hover {
+  background-color: #52525b;
+}
+
+/* --------------------------------------------------------------------------
+   Thin-rail utility
+
+   .custom-scrollbar   6px minimalist rail for tables, modal bodies and popovers.
+
+   Do NOT name a WebKit-only rail `scrollbar-thin`, `scrollbar-thumb-*` or
+   `scrollbar-track-*`: since Tailwind 4.3 those are CORE utilities that emit the
+   standard `scrollbar-width` / `scrollbar-color` properties, and Chromium then
+   discards every ::-webkit-scrollbar rule on that element (see the note at the
+   top of this file). Tailwind's own `scrollbar-gutter-stable` only sets
+   `scrollbar-gutter`, so it is safe to combine with this class.
+   -------------------------------------------------------------------------- */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #d1d5db;
+  border-radius: 9999px;
+  border: 0;
+  background-clip: padding-box;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #9ca3af;
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #3f3f46;
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #52525b;
+}
+
+/* ==========================================================================
+   THE LIGHT/DARK SWITCH (Phase 8 Part 6, decision 6; utils/themeSwitch.js)
+   --------------------------------------------------------------------------
+   With View Transitions the page cross-fades from the old theme's picture to
+   the new one's in 220 ms; .theme-switching-instant turns every transition
+   off while the new theme is drawn, so nothing under the fade lags behind
+   it (and "Reduce motion" switches at once). Without View Transitions,
+   .theme-switching eases every colour over the same 220 ms, only during the
+   switch. The 220 here is THEME_FADE_MS there.
+   ========================================================================== */
+::view-transition-group(root),
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 220ms;
+  animation-timing-function: ease-in-out;
+}
+
+html.theme-switching,
+html.theme-switching *,
+html.theme-switching *::before,
+html.theme-switching *::after {
+  transition-property: background-color, border-color, color, fill, stroke, outline-color, text-decoration-color, box-shadow !important;
+  transition-duration: 220ms !important;
+  transition-timing-function: ease-in-out !important;
+  transition-delay: 0s !important;
+}
+
+html.theme-switching-instant,
+html.theme-switching-instant *,
+html.theme-switching-instant *::before,
+html.theme-switching-instant *::after {
+  transition: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
+/* ==========================================================================
+   SELECT (Phase 13, decision 1): the open list fades and scales in from the
+   side it opens on (opacity and transform only; nothing else moves).
+   ========================================================================== */
+@keyframes is-select-in {
+  from { opacity: 0; transform: translateY(-4px) scale(0.97); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes is-select-in-up {
+  from { opacity: 0; transform: translateY(4px) scale(0.97); }
+  to { opacity: 1; transform: none; }
+}
+.is-select-list[data-side='bottom'] { animation: is-select-in 140ms ease-out both; }
+.is-select-list[data-side='top'] { animation: is-select-in-up 140ms ease-out both; }
+@media (prefers-reduced-motion: reduce) {
+  .is-select-list[data-side] { animation: none; }
+}

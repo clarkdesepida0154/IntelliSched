@@ -1,0 +1,26 @@
+{
+  "about": "Which overrideLogs rows are the Dean's decisions that Engine 4 retrains on (Phase 3 Step 8, item 7; Phase 8 Part 11: a hand assignment a person made counts too). Read by the gateway's tests/unit/decisions.test.js (server/src/utils/decisions.js isTrainingDecision) and by ../intellisched_backend/tests/test_engine4_decisions.py (engine4_retrainer.is_training_decision): both rules must give `decision` for every case.",
+  "cases": [
+    { "name": "accept", "row": { "entryType": "accept", "subjectCode": "ITEC 201" }, "decision": true },
+    { "name": "override", "row": { "entryType": "override", "subjectCode": "ITEC 201" }, "decision": true },
+    { "name": "accept written in capitals", "row": { "entryType": " Accept ", "subjectCode": "ITEC 201" }, "decision": true },
+    { "name": "lock with no author (nobody signed it)", "row": { "entryType": "lock", "subjectCode": "ITEC 201" }, "decision": false },
+    { "name": "lock by the Dean on Assign Faculty (a hand assignment)", "row": { "entryType": "lock", "subjectCode": "ITEC 201", "assignedFacultyId": "FAC-007", "actor": { "id": "64a0000000000000000000a1", "name": "TEST Dean", "role": "Dean" }, "reason": "Assigned on Assign Faculty (lecture and lab)" }, "decision": true },
+    { "name": "lock by the retired College Secretary role (the 9 Oct hand assignments)", "row": { "entryType": "lock", "subjectCode": "ITEC 201", "assignedFacultyId": "FAC-007", "actor": { "id": "64a0000000000000000000a2", "name": "TEST Secretary", "role": "College Secretary" } }, "decision": true },
+    { "name": "lock written by the term loader (System)", "row": { "entryType": "lock", "subjectCode": "ITEC 201", "assignedFacultyId": "FAC-007", "actor": { "id": null, "name": "Term loader", "role": "System" } }, "decision": false },
+    { "name": "lock the term loader writes through the lock handler (a user with no id)", "row": { "entryType": "lock", "subjectCode": "ITEC 201", "assignedFacultyId": "FAC-007", "actor": { "id": null, "name": "Term loader", "role": "System Admin" }, "reason": "Assigned on Assign Faculty (lecture and lab)" }, "decision": false },
+    { "name": "lock by the system on someone's behalf", "row": { "entryType": "lock", "subjectCode": "ITEC 201", "assignedFacultyId": "FAC-007", "actor": { "id": "SYSTEM", "name": "System", "role": "System", "startedBy": { "id": "x", "name": "TEST Dean", "role": "Dean" } } }, "decision": false },
+    { "name": "lock to the TBA pool (nobody chosen)", "row": { "entryType": "lock", "subjectCode": "ITEC 201", "assignedFacultyId": "FAC-TBA", "actor": { "id": "a1", "name": "TEST Dean", "role": "Dean" } }, "decision": false },
+    { "name": "lock naming no professor", "row": { "entryType": "lock", "subjectCode": "ITEC 201", "actor": { "id": "a1", "name": "TEST Dean", "role": "Dean" } }, "decision": false },
+    { "name": "lock a practice-copy script made", "row": { "entryType": "lock", "subjectCode": "ITEC 201", "assignedFacultyId": "FAC-007", "actor": { "id": "a1", "name": "TEST Dean", "role": "Dean" }, "reason": "Practice copy only: the Secretary assigns this class by hand. New section" }, "decision": false },
+    { "name": "lock with an actor without a name", "row": { "entryType": "lock", "subjectCode": "ITEC 201", "assignedFacultyId": "FAC-007", "actor": { "id": "a1", "role": "Dean" } }, "decision": false },
+    { "name": "class move", "row": { "entryType": "schedule-edit", "subjectCode": "ITEC 201", "assignedFacultyId": "FAC-007", "actor": { "id": "a1", "name": "TEST Dean", "role": "Dean" } }, "decision": false },
+    { "name": "approval row", "row": { "entryType": "approval", "subjectCode": "APPROVAL-CHAIN" }, "decision": false },
+    { "name": "an unknown kind", "row": { "entryType": "something-else", "subjectCode": "ITEC 201" }, "decision": false },
+    { "name": "no entryType (older row)", "row": { "subjectCode": "ITEC 201" }, "decision": true },
+    { "name": "entryType null (older row)", "row": { "entryType": null, "subjectCode": "ITEC 201" }, "decision": true },
+    { "name": "entryType empty (older row)", "row": { "entryType": "", "subjectCode": "ITEC 201" }, "decision": true },
+    { "name": "older approval row (no entryType, APPROVAL-CHAIN)", "row": { "subjectCode": "APPROVAL-CHAIN" }, "decision": false },
+    { "name": "older approval row in lower case", "row": { "entryType": null, "subjectCode": "approval-chain" }, "decision": false }
+  ]
+}

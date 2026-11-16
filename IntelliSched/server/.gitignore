@@ -1,0 +1,10 @@
+# Curriculum backups written by scripts/wipeCurriculum.js (local recovery copies, not source).
+scripts/backups/
+
+# Dependencies
+node_modules/
+
+# Environment & Secrets
+.env
+.env.*
+!.env.example

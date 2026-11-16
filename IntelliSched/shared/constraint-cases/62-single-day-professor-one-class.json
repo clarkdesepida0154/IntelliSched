@@ -1,0 +1,144 @@
+{
+  "name": "single-day-professor-one-class",
+  "description": "A professor with exactly one class on Monday: one professor single-class day (and the section has one too).",
+  "policy": {
+    "slotMinutes": 30,
+    "origin": "08:00",
+    "weekGroupsEnabled": true,
+    "dayWindows": {
+      "Monday": {
+        "startSlot": 0,
+        "endSlot": 18
+      },
+      "Tuesday": {
+        "startSlot": 0,
+        "endSlot": 18
+      },
+      "Wednesday": {
+        "startSlot": 0,
+        "endSlot": 18
+      },
+      "Thursday": {
+        "startSlot": 0,
+        "endSlot": 18
+      },
+      "Friday": {
+        "startSlot": 0,
+        "endSlot": 18
+      },
+      "Saturday": {
+        "startSlot": 0,
+        "endSlot": 18
+      }
+    },
+    "lunch": {
+      "enabled": true,
+      "startSlot": 4,
+      "endSlot": 14,
+      "minFreeSlots": 2
+    },
+    "sameSubjectDifferentDays": true,
+    "majorLectureInLab": "PENALTY",
+    "enforceCapacity": false,
+    "softWeights": {
+      "saturdayBlock": 50,
+      "lectureInLab": 10,
+      "sectionGapHour": 5,
+      "facultyGapHour": 2,
+      "overflowRoomBlock": 30,
+      "tbaRoomUsed": 50,
+      "earlyStart": 5,
+      "facultySingleClassDay": 7,
+      "sectionSingleClassDay": 3
+    },
+    "preferredEarliestStartSlot": 0,
+    "seed": 1
+  },
+  "rooms": [
+    {
+      "roomId": "room-lec-1",
+      "roomName": "TEST LEC 1",
+      "roomType": "LEC",
+      "capacity": 40,
+      "availability": []
+    },
+    {
+      "roomId": "room-lec-2",
+      "roomName": "TEST LEC 2",
+      "roomType": "LEC",
+      "capacity": 40,
+      "availability": []
+    },
+    {
+      "roomId": "room-lab-1",
+      "roomName": "TEST LAB 1",
+      "roomType": "LAB",
+      "capacity": null,
+      "availability": []
+    },
+    {
+      "roomId": "room-lab-2",
+      "roomName": "TEST LAB 2",
+      "roomType": "LAB",
+      "capacity": null,
+      "availability": []
+    }
+  ],
+  "faculty": [
+    {
+      "facultyRef": "fac-1",
+      "name": "Test Professor",
+      "unavailable": []
+    }
+  ],
+  "demands": [
+    {
+      "demandId": "sec-a:subj-1:LEC:0",
+      "subjectId": "subj-1",
+      "subjectCode": "TEST SUBJ-1",
+      "sectionId": "sec-a",
+      "sectionCode": "TEST SEC-A",
+      "sectionSize": null,
+      "classType": "LEC",
+      "meetingGroup": "sec-a:subj-1",
+      "durationSlots": 4,
+      "facultyRef": "fac-1",
+      "isMinor": false,
+      "requiresRoom": true,
+      "allowedRoomTypes": [
+        "LEC",
+        "LAB"
+      ],
+      "allowedDays": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "allowedStarts": null,
+      "fixed": null
+    }
+  ],
+  "placements": [
+    {
+      "demandId": "sec-a:subj-1:LEC:0",
+      "day": "Monday",
+      "startSlot": 0,
+      "roomId": "room-lec-1"
+    }
+  ],
+  "expected": {},
+  "expectedSoft": {
+    "SAT_BLOCK": 0,
+    "LEC_IN_LAB": 0,
+    "EXTRA_ROOM": 0,
+    "SECTION_IDLE": 0,
+    "FACULTY_IDLE": 0,
+    "TBA_ROOM": 0,
+    "EARLY_START": 0,
+    "FACULTY_SINGLE_DAY": 7,
+    "SECTION_SINGLE_DAY": 3,
+    "total": 10
+  }
+}

@@ -1,0 +1,203 @@
+{
+  "name": "outside-teacher-no-other-rule",
+  "description": "An outside teacher with Monday 08:00-10:00 and 13:00-15:00 (three idle hours) and a lone Friday class: no conflict and no cost for the teacher (no idle time, no single-class day, no Friday rule); only the sections' lone days cost.",
+  "policy": {
+    "slotMinutes": 30,
+    "origin": "08:00",
+    "weekGroupsEnabled": true,
+    "dayWindows": {
+      "Monday": {
+        "startSlot": 0,
+        "endSlot": 18
+      },
+      "Tuesday": {
+        "startSlot": 0,
+        "endSlot": 18
+      },
+      "Wednesday": {
+        "startSlot": 0,
+        "endSlot": 18
+      },
+      "Thursday": {
+        "startSlot": 0,
+        "endSlot": 18
+      },
+      "Friday": {
+        "startSlot": 0,
+        "endSlot": 18
+      },
+      "Saturday": {
+        "startSlot": 0,
+        "endSlot": 18
+      }
+    },
+    "lunch": {
+      "enabled": true,
+      "startSlot": 4,
+      "endSlot": 14,
+      "minFreeSlots": 2
+    },
+    "sameSubjectDifferentDays": true,
+    "majorLectureInLab": "PENALTY",
+    "enforceCapacity": false,
+    "softWeights": {
+      "saturdayBlock": 50,
+      "lectureInLab": 10,
+      "sectionGapHour": 5,
+      "facultyGapHour": 2,
+      "overflowRoomBlock": 30,
+      "tbaRoomUsed": 50,
+      "earlyStart": 5,
+      "facultySingleClassDay": 7,
+      "fullTimerSingleClassDay": 4,
+      "sectionSingleClassDay": 3
+    },
+    "preferredEarliestStartSlot": 0,
+    "seed": 1,
+    "partTimerSingleDayHard": true
+  },
+  "rooms": [
+    {
+      "roomId": "room-lec-1",
+      "roomName": "TEST LEC 1",
+      "roomType": "LEC",
+      "capacity": 40,
+      "availability": []
+    },
+    {
+      "roomId": "room-lec-2",
+      "roomName": "TEST LEC 2",
+      "roomType": "LEC",
+      "capacity": 40,
+      "availability": []
+    },
+    {
+      "roomId": "room-lab-1",
+      "roomName": "TEST LAB 1",
+      "roomType": "LAB",
+      "capacity": null,
+      "availability": []
+    },
+    {
+      "roomId": "room-lab-2",
+      "roomName": "TEST LAB 2",
+      "roomType": "LAB",
+      "capacity": null,
+      "availability": []
+    }
+  ],
+  "faculty": [],
+  "demands": [
+    {
+      "demandId": "sec-a:g1:LEC:0",
+      "subjectId": "g1",
+      "subjectCode": "TEST G1",
+      "sectionId": "sec-a",
+      "sectionCode": "TEST SEC-A",
+      "sectionSize": null,
+      "classType": "LEC",
+      "meetingGroup": "sec-a:g1",
+      "durationSlots": 4,
+      "facultyRef": null,
+      "isMinor": true,
+      "requiresRoom": false,
+      "allowedRoomTypes": [],
+      "allowedDays": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "allowedStarts": null,
+      "fixed": null,
+      "outsideTeacher": "out-1",
+      "outsideTeacherName": "Test Outside Teacher"
+    },
+    {
+      "demandId": "sec-c:g3:LEC:0",
+      "subjectId": "g3",
+      "subjectCode": "TEST G3",
+      "sectionId": "sec-c",
+      "sectionCode": "TEST SEC-C",
+      "sectionSize": null,
+      "classType": "LEC",
+      "meetingGroup": "sec-c:g3",
+      "durationSlots": 4,
+      "facultyRef": null,
+      "isMinor": true,
+      "requiresRoom": false,
+      "allowedRoomTypes": [],
+      "allowedDays": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "allowedStarts": null,
+      "fixed": null,
+      "outsideTeacher": "out-1",
+      "outsideTeacherName": "Test Outside Teacher"
+    },
+    {
+      "demandId": "sec-b:g2:LEC:0",
+      "subjectId": "g2",
+      "subjectCode": "TEST G2",
+      "sectionId": "sec-b",
+      "sectionCode": "TEST SEC-B",
+      "sectionSize": null,
+      "classType": "LEC",
+      "meetingGroup": "sec-b:g2",
+      "durationSlots": 4,
+      "facultyRef": null,
+      "isMinor": true,
+      "requiresRoom": false,
+      "allowedRoomTypes": [],
+      "allowedDays": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "allowedStarts": null,
+      "fixed": null,
+      "outsideTeacher": "out-1",
+      "outsideTeacherName": "Test Outside Teacher"
+    }
+  ],
+  "placements": [
+    {
+      "demandId": "sec-a:g1:LEC:0",
+      "day": "Monday",
+      "startSlot": 0,
+      "roomId": null
+    },
+    {
+      "demandId": "sec-c:g3:LEC:0",
+      "day": "Monday",
+      "startSlot": 10,
+      "roomId": null
+    },
+    {
+      "demandId": "sec-b:g2:LEC:0",
+      "day": "Friday",
+      "startSlot": 0,
+      "roomId": null
+    }
+  ],
+  "expected": {},
+  "expectedSoft": {
+    "SAT_BLOCK": 0,
+    "LEC_IN_LAB": 0,
+    "EXTRA_ROOM": 0,
+    "SECTION_IDLE": 0,
+    "FACULTY_IDLE": 0,
+    "TBA_ROOM": 0,
+    "EARLY_START": 0,
+    "FACULTY_SINGLE_DAY": 0,
+    "SECTION_SINGLE_DAY": 9,
+    "total": 9
+  }
+}

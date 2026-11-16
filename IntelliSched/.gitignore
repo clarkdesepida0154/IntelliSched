@@ -1,0 +1,28 @@
+# Sensitive personal data (evaluation ratings) - never commit
+docs/data/faculty_data.*
+
+# Demo MongoDB data folder (npm run demo)
+.demo-data/
+
+node_modules/
+
+# Claude Code: local settings and the worktrees of isolated agents (never commit)
+.claude/settings.local.json
+.claude/worktrees/
+
+# The go-live kit's backups (npm run rotate-secrets, live:backup, live:migrate, live:load): .env copies
+# and database exports with the faculty's ratings - never commit
+backups/
+
+# Phase 5: the full ML dataset with the ratings (never commit)
+docs/ml/private/
+
+# Phase 8 Part 2: npm run system-check writes its files and report here (per run, dated)
+system-check/
+
+# Phase 10: the SHAP feature rows hold logged ratings (no names, shuffled); never committed
+docs/eval/phase10/shap_rows.csv
+
+# Phase 12: the built deployment kit and its test installs (never commit; the runtimes and the data files)
+.deploy-out/
+server/build-info.json

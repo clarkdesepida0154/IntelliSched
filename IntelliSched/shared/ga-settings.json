@@ -1,0 +1,24 @@
+{
+  "_readme": "The GA settings the Dean can set on the GA page (Phase 2 Step 3/4): defaults and limits. The gateway serves them (GET /api/schedule/ga-settings) and clamps what it receives to them; Engine 3 clamps again (main.ga_settings) and its engine3_ga.DEFAULT_SETTINGS must equal these defaults (a Python test checks it).",
+  "defaults": {
+    "mode": "memetic",
+    "timeBudgetMinutes": 3,
+    "populationSize": 60,
+    "mutationRate": 0.05,
+    "crossoverRate": 0.9,
+    "repairRate": 0.3,
+    "tournamentSize": 3,
+    "elitism": 2
+  },
+  "limits": {
+    "timeBudgetMinutes": { "min": 1, "max": 10 },
+    "populationSize": { "min": 2, "max": 500 },
+    "mutationRate": { "min": 0, "max": 1 },
+    "crossoverRate": { "min": 0, "max": 1 },
+    "repairRate": { "min": 0, "max": 1 },
+    "tournamentSize": { "min": 2, "max": 10 },
+    "elitism": { "min": 0, "max": 10 },
+    "maxGenerations": { "min": 1, "max": 1000 }
+  },
+  "modes": ["memetic", "baseline"]
+}

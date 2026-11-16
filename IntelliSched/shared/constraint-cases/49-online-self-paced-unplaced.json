@@ -1,0 +1,145 @@
+{
+  "name": "online-self-paced-unplaced",
+  "description": "A Major whose lectures are self-paced online: its lecture is in no demand and no placement; only its lab is placed.",
+  "policy": {
+    "slotMinutes": 30,
+    "origin": "07:00",
+    "dayWindows": {
+      "Monday": {
+        "startSlot": 0,
+        "endSlot": 20
+      },
+      "Tuesday": {
+        "startSlot": 0,
+        "endSlot": 20
+      },
+      "Wednesday": {
+        "startSlot": 0,
+        "endSlot": 20
+      },
+      "Thursday": {
+        "startSlot": 0,
+        "endSlot": 20
+      },
+      "Friday": {
+        "startSlot": 0,
+        "endSlot": 20
+      },
+      "Saturday": {
+        "startSlot": 0,
+        "endSlot": 20
+      }
+    },
+    "lunch": {
+      "enabled": true,
+      "startSlot": 6,
+      "endSlot": 16,
+      "minFreeSlots": 2
+    },
+    "sameSubjectDifferentDays": true,
+    "majorLectureInLab": "PENALTY",
+    "enforceCapacity": false,
+    "softWeights": {
+      "saturdayBlock": 50,
+      "lectureInLab": 10,
+      "sectionGapHour": 5,
+      "facultyGapHour": 2,
+      "overflowRoomBlock": 30,
+      "tbaRoomUsed": 50,
+      "earlyStart": 5
+    },
+    "preferredEarliestStartSlot": 2,
+    "seed": 1
+  },
+  "rooms": [
+    {
+      "roomId": "room-lec-1",
+      "roomName": "TEST LEC 1",
+      "roomType": "LEC",
+      "capacity": 40,
+      "availability": []
+    },
+    {
+      "roomId": "room-lec-2",
+      "roomName": "TEST LEC 2",
+      "roomType": "LEC",
+      "capacity": 40,
+      "availability": []
+    },
+    {
+      "roomId": "room-lab-1",
+      "roomName": "TEST LAB 1",
+      "roomType": "LAB",
+      "capacity": null,
+      "availability": []
+    },
+    {
+      "roomId": "room-lab-2",
+      "roomName": "TEST LAB 2",
+      "roomType": "LAB",
+      "capacity": null,
+      "availability": []
+    }
+  ],
+  "faculty": [],
+  "demands": [
+    {
+      "demandId": "sec-a:subj-sp:LAB:0",
+      "subjectId": "subj-sp",
+      "subjectCode": "TEST SUBJ-SP",
+      "sectionId": "sec-a",
+      "sectionCode": "TEST SEC-A",
+      "sectionSize": null,
+      "classType": "LAB",
+      "meetingGroup": "sec-a:subj-sp",
+      "durationSlots": 6,
+      "facultyRef": null,
+      "isMinor": false,
+      "requiresRoom": true,
+      "allowedRoomTypes": [
+        "LAB"
+      ],
+      "allowedDays": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "allowedStarts": [
+        2,
+        8,
+        14
+      ],
+      "fixed": null
+    }
+  ],
+  "placements": [
+    {
+      "demandId": "sec-a:subj-sp:LAB:0",
+      "day": "Monday",
+      "startSlot": 2,
+      "roomId": "room-lab-1"
+    }
+  ],
+  "expected": {},
+  "expectedSoft": {
+    "SAT_BLOCK": 0,
+    "LEC_IN_LAB": 0,
+    "EXTRA_ROOM": 0,
+    "SECTION_IDLE": 0,
+    "FACULTY_IDLE": 0,
+    "TBA_ROOM": 0,
+    "EARLY_START": 0,
+    "total": 0
+  },
+  "unplaced": [
+    {
+      "sectionId": "sec-a",
+      "subjectId": "subj-sp",
+      "facultyRef": null,
+      "kind": "SELF_PACED",
+      "hours": 2
+    }
+  ]
+}

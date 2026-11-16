@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IntelliSched</title>
+    <!-- The saved theme from the first paint (Phase 8 Part 6, decision 6): the class is set before the
+         app loads, and the page wears the theme's background until the app draws its own
+         (context/ThemeContext.jsx removes theme-boot). The key and the fallback to the system
+         setting are utils/themeSwitch.js's. -->
+    <style>
+      html.theme-boot { background-color: #f1f5f9; }
+      html.theme-boot.dark { background-color: #0a0a0a; }
+    </style>
+    <script>
+      (function () {
+        var root = document.documentElement;
+        var theme = null;
+        try { theme = window.localStorage.getItem('intellisched-theme'); } catch (e) { theme = null; }
+        if (theme !== 'dark' && theme !== 'light') {
+          try { theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; } catch (e) { theme = 'light'; }
+        }
+        root.classList.add('theme-boot');
+        if (theme === 'dark') root.classList.add('dark');
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

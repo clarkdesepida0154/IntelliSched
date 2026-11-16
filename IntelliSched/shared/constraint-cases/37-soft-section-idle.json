@@ -1,0 +1,166 @@
+{
+  "name": "soft-section-idle",
+  "description": "A section with classes 08:00-10:00 and 14:00-16:00: 3 idle hours after the lunch hour.",
+  "policy": {
+    "slotMinutes": 30,
+    "origin": "07:00",
+    "dayWindows": {
+      "Monday": {
+        "startSlot": 0,
+        "endSlot": 20
+      },
+      "Tuesday": {
+        "startSlot": 0,
+        "endSlot": 20
+      },
+      "Wednesday": {
+        "startSlot": 0,
+        "endSlot": 20
+      },
+      "Thursday": {
+        "startSlot": 0,
+        "endSlot": 20
+      },
+      "Friday": {
+        "startSlot": 0,
+        "endSlot": 20
+      },
+      "Saturday": {
+        "startSlot": 0,
+        "endSlot": 20
+      }
+    },
+    "lunch": {
+      "enabled": true,
+      "startSlot": 6,
+      "endSlot": 16,
+      "minFreeSlots": 2
+    },
+    "sameSubjectDifferentDays": true,
+    "majorLectureInLab": "PENALTY",
+    "enforceCapacity": false,
+    "softWeights": {
+      "saturdayBlock": 50,
+      "lectureInLab": 10,
+      "sectionGapHour": 5,
+      "facultyGapHour": 2,
+      "overflowRoomBlock": 30,
+      "tbaRoomUsed": 50,
+      "earlyStart": 5
+    },
+    "preferredEarliestStartSlot": 2,
+    "seed": 1
+  },
+  "rooms": [
+    {
+      "roomId": "room-lec-1",
+      "roomName": "TEST LEC 1",
+      "roomType": "LEC",
+      "capacity": 40,
+      "availability": []
+    },
+    {
+      "roomId": "room-lec-2",
+      "roomName": "TEST LEC 2",
+      "roomType": "LEC",
+      "capacity": 40,
+      "availability": []
+    },
+    {
+      "roomId": "room-lab-1",
+      "roomName": "TEST LAB 1",
+      "roomType": "LAB",
+      "capacity": null,
+      "availability": []
+    },
+    {
+      "roomId": "room-lab-2",
+      "roomName": "TEST LAB 2",
+      "roomType": "LAB",
+      "capacity": null,
+      "availability": []
+    }
+  ],
+  "faculty": [],
+  "demands": [
+    {
+      "demandId": "sec-a:s1:LEC:0",
+      "subjectId": "s1",
+      "subjectCode": "TEST S1",
+      "sectionId": "sec-a",
+      "sectionCode": "TEST SEC-A",
+      "sectionSize": null,
+      "classType": "LEC",
+      "meetingGroup": "sec-a:s1",
+      "durationSlots": 4,
+      "facultyRef": null,
+      "isMinor": false,
+      "requiresRoom": true,
+      "allowedRoomTypes": [
+        "LEC",
+        "LAB"
+      ],
+      "allowedDays": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "allowedStarts": null,
+      "fixed": null
+    },
+    {
+      "demandId": "sec-a:s2:LEC:0",
+      "subjectId": "s2",
+      "subjectCode": "TEST S2",
+      "sectionId": "sec-a",
+      "sectionCode": "TEST SEC-A",
+      "sectionSize": null,
+      "classType": "LEC",
+      "meetingGroup": "sec-a:s2",
+      "durationSlots": 4,
+      "facultyRef": null,
+      "isMinor": false,
+      "requiresRoom": true,
+      "allowedRoomTypes": [
+        "LEC",
+        "LAB"
+      ],
+      "allowedDays": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "allowedStarts": null,
+      "fixed": null
+    }
+  ],
+  "placements": [
+    {
+      "demandId": "sec-a:s1:LEC:0",
+      "day": "Monday",
+      "startSlot": 2,
+      "roomId": "room-lec-1"
+    },
+    {
+      "demandId": "sec-a:s2:LEC:0",
+      "day": "Monday",
+      "startSlot": 14,
+      "roomId": "room-lec-2"
+    }
+  ],
+  "expected": {},
+  "expectedSoft": {
+    "SAT_BLOCK": 0,
+    "LEC_IN_LAB": 0,
+    "EXTRA_ROOM": 0,
+    "SECTION_IDLE": 15,
+    "FACULTY_IDLE": 0,
+    "TBA_ROOM": 0,
+    "EARLY_START": 0,
+    "total": 15
+  }
+}

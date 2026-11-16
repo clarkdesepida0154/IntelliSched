@@ -1,0 +1,439 @@
+/* The printed Teachers' Program (Phase 3 Step 3): the SF-029 form (TeachersProgramForm.jsx) and the
+   parts the "Class schedule table" layout shares with it (TeachersProgramParts.jsx). Each form is one
+   A4 portrait page (print.css .print-page). Sizes are in millimetres and points, so a form measures
+   the same on screen as on paper; every colour is set, so the forms stay black on white in either
+   theme. */
+
+/* ---------------------------------------------------------------- the SF-029 form */
+.print-page.tp-form {
+  font-family: "Times New Roman", Times, Georgia, serif;
+  font-size: 8.5pt;
+  line-height: 1.2;
+}
+
+/* The logo to the left of the university's name; the three lines stay centred on the page. */
+.tp-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  column-gap: 3mm;
+  margin-bottom: 2mm;
+}
+
+.tp-logo {
+  justify-self: end;
+  width: 16mm;
+  height: 16mm;
+  object-fit: contain;
+}
+
+.tp-head-text {
+  text-align: center;
+}
+
+.tp-republic,
+.tp-province {
+  font-size: 9.5pt;
+}
+
+.tp-university {
+  margin: 0.4mm 0;
+  font-size: 14pt;
+  font-weight: 700;
+}
+
+.tp-titles {
+  text-align: center;
+  margin-bottom: 3mm;
+}
+
+.tp-college {
+  font-size: 11pt;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.tp-title {
+  margin-top: 0.6mm;
+  font-size: 13pt;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.tp-term {
+  margin-top: 0.4mm;
+  font-size: 9.5pt;
+}
+
+/* The two info columns: each fact's label, and its value on a line (blank when there is none). */
+.tp-info {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  column-gap: 8mm;
+  margin-bottom: 3mm;
+}
+
+.tp-info-col {
+  display: grid;
+  row-gap: 1mm;
+  align-content: start;
+}
+
+/* A value that wraps (a long list of subjects) keeps its label on its first line. */
+.tp-info-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 1.5mm;
+  align-items: baseline;
+}
+
+.tp-info-row dt {
+  white-space: nowrap;
+}
+
+.tp-info-row dd {
+  min-height: 3.8mm;
+  border-bottom: 0.5pt solid #000;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+/* A blank fact still has a line of text's height, so its line sits level with the others. */
+.tp-info-row dd:empty::after {
+  content: "\00a0";
+}
+
+/* The same facts, smaller, under the header of the "Class schedule table" layout. */
+.tp-info--compact {
+  margin: -1mm 0 2mm;
+  font-size: 7.5pt;
+  line-height: 1.2;
+}
+
+.tp-info--compact .tp-info-col {
+  row-gap: 0.6mm;
+}
+
+.tp-info--compact .tp-info-row dd {
+  min-height: 3.2mm;
+}
+
+/* The grid: "Period" and the seven days, thin black lines as on the form. Every row has the same
+   height (--tp-row, made shorter by useFitOnePage when the form is too tall); a block's cell spans
+   its rows and its content never makes a row taller. */
+.tp-grid {
+  --tp-row: 7.2mm;
+  --tp-line: #000;
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  font-size: 6.6pt;
+  line-height: 1.12;
+  color: #000;
+  background: #fff;
+}
+
+.tp-grid .tp-col-period {
+  width: 19mm;
+}
+
+.tp-grid th,
+.tp-grid td {
+  box-sizing: border-box;
+  padding: 0;
+  border: 0.5pt solid var(--tp-line);
+  text-align: center;
+  vertical-align: middle;
+  font-weight: 400;
+}
+
+.tp-grid thead th {
+  height: 5mm;
+  padding: 0.6mm 0.3mm;
+  font-size: 7pt;
+  font-weight: 700;
+}
+
+.tp-grid tbody tr {
+  height: var(--tp-row);
+}
+
+.tp-grid .tp-period {
+  padding: 0 0.5mm;
+  white-space: nowrap;
+}
+
+.tp-grid tfoot th,
+.tp-grid tfoot td {
+  padding: 0.8mm 0.4mm;
+  font-size: 7pt;
+  font-weight: 700;
+}
+
+.tp-grid tfoot th {
+  text-align: left;
+}
+
+/* A block's cell: its boxes side by side (only a Draft with a conflict has two). */
+.tp-cell-boxes {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+}
+
+.tp-box {
+  flex: 1 1 0;
+  min-width: 0;
+  height: 100%;
+  container: tp-box / size;
+}
+
+.tp-box + .tp-box {
+  border-left: 0.5pt solid var(--tp-line);
+}
+
+.tp-box-in {
+  box-sizing: border-box;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: safe center;
+  align-items: center;
+  padding: 0.3mm 0.5mm;
+  overflow: hidden;
+  text-align: center;
+}
+
+.tp-b-line {
+  display: block;
+  max-width: 100%;
+}
+
+/* The code: one line, bold. */
+.tp-b-code {
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* The title: one line in a 1-hour box, more in taller ones, cut with "..." when it doesn't fit. */
+.tp-b-title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
+
+@container tp-box (min-height: 17mm) {
+  .tp-b-title {
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+}
+
+@container tp-box (min-height: 24mm) {
+  .tp-b-title {
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+  }
+}
+
+/* LEC or LAB, then the section, each on its line. */
+.tp-b-meta .tp-b-kind,
+.tp-b-meta .tp-b-section {
+  display: block;
+  overflow-wrap: anywhere;
+}
+
+.tp-b-sep {
+  display: none;
+}
+
+/* The room, in small text (only when the Output Settings show rooms). */
+.tp-b-room {
+  font-size: 5.6pt;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* A box too short for five lines (a 1-hour class on shorter rows): LEC or LAB and the section share a
+   line; shorter still, the room and then the title are left out, so the code and LEC or LAB stay. */
+@container tp-box (max-height: 12.8mm) {
+  .tp-b-meta .tp-b-kind,
+  .tp-b-meta .tp-b-section,
+  .tp-b-sep {
+    display: inline;
+  }
+}
+
+@container tp-box (max-height: 10.2mm) {
+  .tp-b-room {
+    display: none;
+  }
+}
+
+@container tp-box (max-height: 8.2mm) {
+  .tp-b-title {
+    display: none;
+  }
+}
+
+/* An ancillary duty block: its label as on the real forms, wrapping as far as the box allows. */
+.tp-b-duty {
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.tp-grid-missing {
+  padding: 3mm;
+  border: 0.5pt solid #000;
+}
+
+/* The self-paced online lectures under the SF-029 grid (Phase 3 Step 7): close under it, like the
+   duty-hours note, with the form's thin black lines. */
+.tp-form .sheet-selfpaced {
+  margin: 1.2mm 0 0;
+}
+
+.tp-form .sheet-selfpaced .sheet-subjects th,
+.tp-form .sheet-selfpaced .sheet-subjects td {
+  border-color: #000;
+}
+
+/* Read by screen readers only (the grid's caption). */
+.tp-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---------------------------------------------------------------- both layouts */
+/* Under the grid: the load summary on the left, the signatory lines on the right (a long name or
+   title wraps under its line to sign on, as on every sheet: print.css). */
+.tp-below {
+  display: grid;
+  grid-template-columns: 86mm minmax(0, 1fr);
+  column-gap: 7mm;
+  align-items: start;
+  margin-top: 3mm;
+}
+
+/* Phase 8 Part 3 (decision 1a): on the SF-029 form the four signatory blocks sit as on the office's
+   scans — staggered over the area under the grid, never one column. The summary keeps its left spot;
+   the signature area lies over the whole width, each label at its measured place and each name
+   centred on its own line (the room above it is for the signature). The positions mirror the export
+   layout's measurements (server/src/exports/layouts.js signatureArea). */
+.tp-below--sf029 {
+  display: block;
+  position: relative;
+  min-height: 72mm;
+}
+
+.tp-below--sf029 .tp-summary {
+  width: 86mm;
+}
+
+.tp-sig-area {
+  position: absolute;
+  inset: 0;
+  font-size: 8pt;
+  line-height: 1.2;
+}
+
+.tp-sig-area p {
+  margin: 0;
+}
+
+.tp-sig-label {
+  position: absolute;
+  white-space: nowrap;
+}
+
+.tp-sig-name-box {
+  position: absolute;
+  width: 92mm;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.tp-sig-name {
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* An empty name stays a line to sign on, never a placeholder. */
+.tp-sig-name--blank {
+  margin: 0 18mm;
+  border-bottom: 0.5pt solid #000;
+  min-height: 3.6mm;
+}
+
+.tp-sig-title {
+  font-size: 7.5pt;
+}
+
+.tp-below .sheet-signatories {
+  margin-top: 0;
+  gap: 3mm 5mm;
+}
+
+.tp-summary {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  font-size: 7.5pt;
+  line-height: 1.15;
+  color: #000;
+  background: #fff;
+}
+
+.tp-summary .tp-summary-hours {
+  width: 25mm;
+}
+
+.tp-summary th,
+.tp-summary td {
+  padding: 0.45mm 1.2mm;
+  border: 0.5pt solid #000;
+  text-align: left;
+  vertical-align: middle;
+  font-weight: 400;
+}
+
+.tp-summary td {
+  text-align: center;
+}
+
+.tp-summary .tp-summary-head th,
+.tp-summary .tp-summary-head td {
+  font-weight: 700;
+}
+
+.tp-summary .tp-summary-head td {
+  font-size: 8.5pt;
+}
+
+.tp-summary-sub {
+  display: block;
+  font-size: 7pt;
+  font-weight: 400;
+}
+
+.tp-summary .tp-summary-cols th {
+  text-align: center;
+  font-size: 7pt;
+  font-weight: 700;
+}
+
+.tp-summary .tp-summary-total th,
+.tp-summary .tp-summary-total td {
+  font-weight: 700;
+}

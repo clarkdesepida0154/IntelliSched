@@ -1,0 +1,261 @@
+/* The class-schedule table (Phase 3 Step 1, WeeklyTable.jsx). It copies the team's class schedule
+   (docs/data/sample-section-schedule.png): black text on white, thin light-grey lines, Arial/Helvetica,
+   no colours. It keeps these colours in the dark theme too, like a sheet of paper, so the screen and
+   the print look the same. The sizes are the sample's, scaled by 1.2: the 190 mm of an A4 page.
+   A print view sets .wt--print (millimetre rows sized for one A4 portrait page). */
+.wt {
+  --wt-row: 40px;
+  /* The strip between the header and the first line, where the first label's top half sits. */
+  --wt-strip: 6px;
+  --wt-time-col: 58px;
+  /* The frame, the header's line and the column lines. */
+  --wt-line: #c0c0c0;
+  /* The line at each slot time, lighter. */
+  --wt-row-line: #dcdcdc;
+  --wt-box: #cbcbcb;
+  /* The text keeps the sample's size against the row, a quarter of it (10 px on a 40 px row), so a
+     print whose rows get shorter (useFitOnePage) still shows the sample's lines in each box; never
+     below 6pt. */
+  --wt-font: max(6pt, calc(var(--wt-row) * 0.25));
+  /* The header, the time labels and a class's code. */
+  --wt-font-large: calc(var(--wt-font) * 1.15);
+  background: #fff;
+  color: #000;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: var(--wt-font);
+  line-height: 1.25;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.wt-grid {
+  display: grid;
+  grid-template-columns: var(--wt-time-col) repeat(7, minmax(0, 1fr));
+  border: 1px solid var(--wt-line);
+  border-right: 0;
+}
+
+/* The text sits low in the header, as in the sample. */
+.wt-th {
+  border-right: 1px solid var(--wt-line);
+  border-bottom: 1px solid var(--wt-line);
+  font-weight: 700;
+  font-size: var(--wt-font-large);
+  text-transform: uppercase;
+  text-align: center;
+  padding: 9px 2px 1px;
+}
+
+.wt-col {
+  position: relative;
+  border-right: 1px solid var(--wt-line);
+  min-width: 0;
+  padding-top: var(--wt-strip);
+}
+
+/* A row draws the line at its start time; the tail is the empty row after the last line. */
+.wt-cell,
+.wt-tail {
+  box-sizing: border-box;
+  height: var(--wt-row);
+  border-top: 1px solid var(--wt-row-line);
+}
+
+.wt-col--time > * { position: relative; }
+
+/* Each label is centred on the line it names (the line runs through it), left in the TIME column;
+   the first one's top half sits in the strip. */
+.wt-time-label {
+  position: absolute;
+  left: 0;
+  top: 1px;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  font-size: var(--wt-font-large);
+  line-height: 1.2;
+}
+
+/* Focus put on the table from code (the class that had it left the view). */
+.wt:focus { outline: none; }
+.wt:focus-visible {
+  outline: 3px solid #1d4ed8;
+  outline-offset: 2px;
+}
+
+/* Drawn instead of the table when its caller gave no day window and no block to follow. */
+.wt--missing {
+  padding: 12px;
+  border: 1px solid var(--wt-line);
+}
+
+.wt-block {
+  position: absolute;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  overflow: hidden;
+  margin: 0;
+  /* The font shorthand also sets line-height, so it comes first. */
+  font: inherit;
+  /* Five lines fit a 1-hour (two-row) box, as in the sample (3px 3px 1px on screen). */
+  padding: 0.3em 0.3em 0.1em;
+  line-height: 1.4;
+  background: #fff;
+  color: #000;
+  border: 1px solid var(--wt-box);
+  text-align: left;
+  /* The box's own height decides whether a line may take more rows of text (below). */
+  container-type: size;
+}
+
+/* A class's code, a little larger than its other lines. */
+.wt-block--class .wt-line:first-child { font-size: var(--wt-font-large); }
+
+/* A line of a box (the room, the professor or the section, a note): it wraps as far as the box has
+   room for every line, then is cut with "...", so the professor's name and position show. In a box
+   too short for five lines each stays on one line, so every line still shows. The heights below are
+   the box's lines at line-height 1.4 (the code's line is 1.61em). */
+.wt-line {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
+
+/* Five lines (a 1-hour class on screen): the last line (the professor, or the section) may take two. */
+@container (min-height: 7.2em) {
+  .wt-line:last-child {
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+}
+
+/* Six lines: every line may take two. */
+@container (min-height: 8.6em) {
+  .wt-line {
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+}
+
+/* Seven lines or more: the last line may take three (a long name and its position). */
+@container (min-height: 10em) {
+  .wt-line:last-child {
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+  }
+}
+
+/* The subject code: one line. */
+.wt-line--nowrap {
+  display: block;
+  white-space: nowrap;
+}
+
+/* The subject title: one line, cut with "..." when it doesn't fit. */
+.wt-line--ellipsis {
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* A line that wraps as far as its box allows (a duty's label, e.g. "COMPETITIVE EDGE ENHANCEMENT");
+   the box cuts what it can't hold. */
+.wt-line--wrap { display: block; }
+
+.wt-line--bold { font-weight: 700; }
+
+/* Ancillary duty blocks on the Teachers' Program. */
+.wt-block--duty { border-style: solid; }
+/* A coordinator's On-The-Job Training box (Phase 4 Part 4): drawn like a class. */
+.wt-block--practicum { border-style: solid; }
+
+/* The optional row under the table (the Teachers' Program's day totals), in the table's columns: the
+   label under TIME, each day's value in its column. */
+.wt-totals {
+  display: grid;
+  grid-template-columns: var(--wt-time-col) repeat(7, minmax(0, 1fr));
+  margin-top: 4px;
+  border-top: 1px solid var(--wt-line);
+  border-left: 1px solid var(--wt-line);
+}
+
+.wt-totals-cell {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  padding: 5px 4px;
+  border-right: 1px solid var(--wt-line);
+  border-bottom: 1px solid var(--wt-line);
+  font-weight: 700;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.wt-totals-cell--label {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+/* Read by screen readers only (the day's name in front of its total). */
+.wt-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* A professor's unavailable time: grey, with its note. Not counted in any total. */
+.wt-block--unavailable {
+  background: #e6e6e6;
+  border: 1px dashed #7a7a7a;
+  color: #1a1a1a;
+}
+
+/* The 2 px outlines take 1 px of the padding, so the lines keep their place and their wrapping. */
+.wt-block--selected {
+  border: 2px solid #000;
+  padding: 2px 2px 0;
+}
+
+/* Only an editor preview can have a clash. The red outline wins over the selection. */
+.wt-block--clash,
+.wt-block--selected.wt-block--clash {
+  border: 2px solid #c81e1e;
+  padding: 2px 2px 0;
+}
+
+/* A class's old place while the editor previews its move. */
+.wt-block--faded {
+  border-style: dashed;
+  background: #f7f7f7;
+  color: #444;
+}
+
+.wt-block--button { cursor: pointer; }
+.wt-block--button:not(:disabled):hover { background: #f3f3f3; }
+/* A block that can't be chosen right now (e.g. while a move is saved); its title says why. It keeps
+   its black text: the table does not change while the page waits. */
+.wt-block--button:disabled { cursor: not-allowed; }
+.wt-block--button:focus-visible {
+  outline: 3px solid #1d4ed8;
+  outline-offset: 1px;
+  z-index: 2;
+}
+
+/* A print keeps the sizes above (the sample's on the 190 mm of an A4 page); its rows are the sample's
+   in millimetres, and useFitOnePage makes them shorter when a sheet is too tall (the text with them). */
+.wt--print {
+  --wt-row: 10.4mm;
+}
+.wt--print .wt-totals { margin-top: 1mm; }
+.wt--print .wt-totals-cell { padding: 1mm 0.8mm; }

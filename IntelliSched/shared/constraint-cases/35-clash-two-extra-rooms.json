@@ -1,0 +1,196 @@
+{
+  "name": "clash-two-extra-rooms",
+  "description": "Two sections at the same time in two different extra LAB rooms.",
+  "policy": {
+    "slotMinutes": 30,
+    "origin": "07:00",
+    "dayWindows": {
+      "Monday": {
+        "startSlot": 0,
+        "endSlot": 20
+      },
+      "Tuesday": {
+        "startSlot": 0,
+        "endSlot": 20
+      },
+      "Wednesday": {
+        "startSlot": 0,
+        "endSlot": 20
+      },
+      "Thursday": {
+        "startSlot": 0,
+        "endSlot": 20
+      },
+      "Friday": {
+        "startSlot": 0,
+        "endSlot": 20
+      },
+      "Saturday": {
+        "startSlot": 0,
+        "endSlot": 20
+      }
+    },
+    "lunch": {
+      "enabled": true,
+      "startSlot": 6,
+      "endSlot": 16,
+      "minFreeSlots": 2
+    },
+    "sameSubjectDifferentDays": true,
+    "majorLectureInLab": "PENALTY",
+    "enforceCapacity": false,
+    "softWeights": {
+      "saturdayBlock": 50,
+      "lectureInLab": 10,
+      "sectionGapHour": 5,
+      "facultyGapHour": 2,
+      "overflowRoomBlock": 30,
+      "tbaRoomUsed": 0,
+      "earlyStart": 0
+    },
+    "preferredEarliestStartSlot": 2,
+    "seed": 1
+  },
+  "rooms": [
+    {
+      "roomId": "room-lec-1",
+      "roomName": "TEST LEC 1",
+      "roomType": "LEC",
+      "capacity": 40,
+      "availability": []
+    },
+    {
+      "roomId": "room-lec-2",
+      "roomName": "TEST LEC 2",
+      "roomType": "LEC",
+      "capacity": 40,
+      "availability": []
+    },
+    {
+      "roomId": "room-lab-1",
+      "roomName": "TEST LAB 1",
+      "roomType": "LAB",
+      "capacity": null,
+      "availability": []
+    },
+    {
+      "roomId": "room-lab-2",
+      "roomName": "TEST LAB 2",
+      "roomType": "LAB",
+      "capacity": null,
+      "availability": []
+    },
+    {
+      "roomId": "EXTRA-LAB-1",
+      "roomName": "Extra LAB room 1 (TBA – to request)",
+      "roomType": "LAB",
+      "capacity": null,
+      "availability": [],
+      "extra": true
+    },
+    {
+      "roomId": "EXTRA-LAB-2",
+      "roomName": "Extra LAB room 2 (TBA – to request)",
+      "roomType": "LAB",
+      "capacity": null,
+      "availability": [],
+      "extra": true
+    },
+    {
+      "roomId": "EXTRA-LEC-1",
+      "roomName": "Extra LEC room 1 (TBA – to request)",
+      "roomType": "LEC",
+      "capacity": null,
+      "availability": [],
+      "extra": true
+    }
+  ],
+  "faculty": [],
+  "demands": [
+    {
+      "demandId": "sec-a:subj-1:LAB:0",
+      "subjectId": "subj-1",
+      "subjectCode": "TEST SUBJ-1",
+      "sectionId": "sec-a",
+      "sectionCode": "TEST SEC-A",
+      "sectionSize": null,
+      "classType": "LAB",
+      "meetingGroup": "sec-a:subj-1",
+      "durationSlots": 6,
+      "facultyRef": null,
+      "isMinor": false,
+      "requiresRoom": true,
+      "allowedRoomTypes": [
+        "LAB"
+      ],
+      "allowedDays": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "allowedStarts": [
+        2,
+        8,
+        14
+      ],
+      "fixed": null
+    },
+    {
+      "demandId": "sec-b:subj-1:LAB:0",
+      "subjectId": "subj-1",
+      "subjectCode": "TEST SUBJ-1",
+      "sectionId": "sec-b",
+      "sectionCode": "TEST SEC-B",
+      "sectionSize": null,
+      "classType": "LAB",
+      "meetingGroup": "sec-b:subj-1",
+      "durationSlots": 6,
+      "facultyRef": null,
+      "isMinor": false,
+      "requiresRoom": true,
+      "allowedRoomTypes": [
+        "LAB"
+      ],
+      "allowedDays": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "allowedStarts": [
+        2,
+        8,
+        14
+      ],
+      "fixed": null
+    }
+  ],
+  "placements": [
+    {
+      "demandId": "sec-a:subj-1:LAB:0",
+      "day": "Monday",
+      "startSlot": 2,
+      "roomId": "EXTRA-LAB-1"
+    },
+    {
+      "demandId": "sec-b:subj-1:LAB:0",
+      "day": "Monday",
+      "startSlot": 2,
+      "roomId": "EXTRA-LAB-2"
+    }
+  ],
+  "expected": {},
+  "expectedSoft": {
+    "SAT_BLOCK": 0,
+    "LEC_IN_LAB": 0,
+    "EXTRA_ROOM": 60,
+    "SECTION_IDLE": 0,
+    "FACULTY_IDLE": 0,
+    "TBA_ROOM": 0,
+    "EARLY_START": 0,
+    "total": 60
+  }
+}
